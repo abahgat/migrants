@@ -1,0 +1,28 @@
+html {
+    height: 100%
+}
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+}
+#map_canvas {
+    height: 100%
+}
+.location-marker {
+    /* make it round */
+    border-radius: 50%;
+    border: 1px #fff solid !important;
+    box-shadow: 0 0 5px #fff;
+    background-color: #fff
+}
+.location-marker.home {
+    border: 1px #fb7a22 solid !important;
+    box-shadow: 0 0 5px #fb7a22;
+    background-color: #fb7a22;
+}
+.location-marker.current {
+    box-shadow: 0 0 5px #2eff2e;
+    background-color: #2eff2e;
+    border: 1px #2eff2e solid !important;
+}

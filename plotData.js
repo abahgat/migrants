@@ -24,8 +24,9 @@ CustomMarker.prototype.draw = function() {
     }
     var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
     if (point) {
-        div.style.left = point.x + 'px';
-        div.style.top = point.y + 'px';
+        // make sure the x, y coordinates correctly denote the center of the circle
+        div.style.left = (point.x-this.size_/2) + 'px';
+        div.style.top = (point.y-this.size_/2) + 'px';
     }
 };
 CustomMarker.prototype.getPosition = function() {

@@ -1,12 +1,12 @@
 function DataCollector() {
 
-    this.collect = function() {
-        return fetchFriends();
+    this.collect = function(plotter) {
+        return fetchFriends(plotter);
     }
 
     var locations = {}
 
-    function resolveLocations(locIds) {
+    function resolveLocations(locIds, homeCounts, currentCounts, plotter) {
         // it would be better to batch these calls, if possible
         for (var i = 0, l = locIds.length; i < l; i++) {
             var id = locIds[i];
@@ -17,15 +17,21 @@ function DataCollector() {
                 },
                 function(response) {
                     console.log(response.id + ' ' + response.name + ' '
-                    + JSON.stringify(response.location));
-                    locations[id] = response.location;
+                     + JSON.stringify(response.location));
+                    loc = response.location;
+                    if (loc) { // why is it sometimes undefined?
+                        locations[id] = loc;
+                        loc.homeCount = homeCounts[id];
+                        loc.currentCount = currentCounts[id];
+                        plotter.drawLocation(loc);
+                    }
                 });
             }
         }
         return locations;
     }
 
-    function fetchFriends() {
+    function fetchFriends(plotter) {
 
         var stats = {
             none: 0,
@@ -61,7 +67,7 @@ function DataCollector() {
             for (var i = 0, l = friends.length; i < l; i++) {
                 var friend = friends[i];
 
-                console.log(JSON.stringify(friend));
+                // console.log(JSON.stringify(friend));
 
                 var name = friend.name;
                 var location = friend.location;
@@ -98,7 +104,7 @@ function DataCollector() {
             // location_ids array may contain dupes
             return {
                 stats: stats,
-                locations: resolveLocations(location_ids),
+                locations: resolveLocations(location_ids, hometowns, current_locations, plotter),
                 hometowns: hometowns,
                 current_locations: current_locations
             }

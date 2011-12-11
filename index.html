@@ -1,7 +1,48 @@
+<!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0 }
+  #map_canvas { height: 100% }
+</style>
+<script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=false">
+</script>
+<script type="text/javascript">
+  var plotter;
+
+  function initialize() {
+    var latlng = new google.maps.LatLng(43.012924, 0.0);
+    var myOptions = {
+		center: latlng,
+        zoom: 2,
+        minZoom: 2,
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+
+	plotter = new Plotter(map);
+  }
+
+</script>
+</head>
 <body>
+	<body onload="initialize()">
+	  <div id="map_canvas" style="width:100%; height:100%"></div>
+	</body>
 	<div id="fb-root"></div>
+	
+	<!-- this should be drawn in an overlay or something similar -->
+	<div class="fb-login-button" data-show-faces="true" data-width="200"
+		data-max-rows="2"
+		perms="user_location,friends_location,user_hometown,friends_hometown"></div>
+
+	<script type="text/javascript" src="plotData.js"></script>
 	<script type="text/javascript" src="gatherData.js"></script>
+	
 	<script>
 		window.fbAsyncInit = function() {
 			FB.init({
@@ -19,7 +60,8 @@
 					// logged in and connected user, someone you know
 					console.log("logged in");
 					var collector = new DataCollector();
-					var data = collector.collect();
+					var data = collector.collect(plotter);
+					
 				} else {
 					// no user session available, someone you dont know
 					console.log("not logged in");
@@ -37,10 +79,6 @@
 			document.getElementById('fb-root').appendChild(e);
 		}());
 	</script>
-
-	<div class="fb-login-button" data-show-faces="true" data-width="200"
-		data-max-rows="2"
-		perms="user_location,friends_location,user_hometown,friends_hometown"></div>
 
 
 

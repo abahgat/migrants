@@ -36,8 +36,26 @@ CustomMarker.prototype.getPosition = function() {
 function Plotter(map) {
     this.map = map;
     
-    this.drawLocation = function(location) {
-		var position = new google.maps.LatLng(location.latitude,location.longitude);
-		var marker = new CustomMarker(position, 5, 'home', map);
+    this.drawLocation = function(loc) {
+		drawFixedSize(loc);
+	}
+	
+	function drawFixedSize(loc) {
+	    var position = new google.maps.LatLng(loc.latitude,loc.longitude);
+	    var marker = new CustomMarker(position, 5, 'main', map);
+		    
+	}
+	
+	function drawWithSize(loc) {
+	    var position = new google.maps.LatLng(loc.latitude,loc.longitude);
+	    var homec = loc.homeCount;
+		var currc = loc.currentCount;
+	    if (homec < currc) {
+		    var marker = new CustomMarker(position, 2*(homec+currc), 'current', map);
+		    var marker = new CustomMarker(position, 2*homec, 'home', map);
+		} else {
+		    var marker = new CustomMarker(position, 2*(homec+currc), 'home', map);
+		    var marker = new CustomMarker(position, 2*currc, 'current', map);
+		}
 	}
 }

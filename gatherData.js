@@ -16,13 +16,13 @@ function DataCollector() {
                     fields: ['location', 'name']
                 },
                 function(response) {
-                    console.log(response.id + ' ' + response.name + ' '
-                     + JSON.stringify(response.location));
-                    loc = response.location;
+                    // console.log(response.id + ' ' + response.name + ' '
+                    // + JSON.stringify(response.location));
+                    var loc = response.location;
                     if (loc) { // why is it sometimes undefined?
-                        locations[id] = loc;
-                        loc.homeCount = homeCounts[id];
-                        loc.currentCount = currentCounts[id];
+                        locations[response.id] = loc;
+                        loc.homeCount = homeCounts[new String(response.id)];
+                        loc.currentCount = currentCounts[new String(response.id)];
                         plotter.drawLocation(loc);
                     }
                 });

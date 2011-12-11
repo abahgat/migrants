@@ -20,9 +20,17 @@ body {
     border: 1px #fb7a22 solid !important;
     box-shadow: 0 0 5px #fb7a22;
     background-color: #fb7a22;
+    opacity: .5;
 }
 .location-marker.current {
     box-shadow: 0 0 5px #2eff2e;
     background-color: #2eff2e;
     border: 1px #2eff2e solid !important;
+    opacity: .5;
+}
+.location-marker.main {
+    box-shadow: 0 0 5px #2eff2e;
+    background-color: #2eff2e;
+    border: 1px #2eff2e solid !important;
+    opacity: .65;
 }

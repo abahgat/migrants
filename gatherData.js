@@ -21,8 +21,9 @@ function DataCollector() {
                     var loc = response.location;
                     if (loc) { // why is it sometimes undefined?
                         locations[response.id] = loc;
-                        loc.homeCount = homeCounts[new String(response.id)];
-                        loc.currentCount = currentCounts[new String(response.id)];
+                        loc.id = response.id;
+                        loc.homeCount = homeCounts[response.id];
+                        loc.currentCount = currentCounts[response.id];
                         plotter.drawLocation(loc);
                     }
                 });
@@ -58,6 +59,7 @@ function DataCollector() {
         var hometowns = {};
 
         var location_ids = [];
+        var arcs = [];
 
         FB.api('/me/friends', {
             fields: ['name', 'location', 'hometown']
@@ -85,6 +87,7 @@ function DataCollector() {
                 if (location && hometown) {
                     stats.both++;
                     if (location.id != hometown.id) {
+                        arcs.push([hometown.id, location.id]);
                         stats.different++;
                     }
                 } else if (location) {
@@ -100,11 +103,23 @@ function DataCollector() {
 
             console.log("hometowns: " + mapSize(hometowns) + " locations: "
             + mapSize(current_locations));
+            
+            var location_coordinates = resolveLocations(location_ids, hometowns, current_locations, plotter);
+            
+            // this should be done while drawing locations
+            function drawArcs() {
+                for (var i = 0; i < arcs.length; i++) {
+                    console.log(arcs[i][0] + '->' + arcs[i][1]);
+                    plotter.drawArc(locations[arcs[i][0]], locations[arcs[i][1]]);
+                }
+            }
+            
+            setTimeout(drawArcs, 10000);
 
             // location_ids array may contain dupes
             return {
                 stats: stats,
-                locations: resolveLocations(location_ids, hometowns, current_locations, plotter),
+                locations: location_coordinates,
                 hometowns: hometowns,
                 current_locations: current_locations
             }

@@ -36,6 +36,31 @@ CustomMarker.prototype.getPosition = function() {
 function Plotter(map) {
     this.map = map;
     
+    var arcs = {};
+    
+    this.drawArc = function(from, to) {
+        var akey = from.id + to.id;
+        if (arcs[akey]) {
+            console.log('Duplicate edge found ' + akey);
+            return;
+        }
+        var points = [
+            new google.maps.LatLng(from.latitude,from.longitude),
+            new google.maps.LatLng(to.latitude,to.longitude)
+            ];
+        var line = new google.maps.Polyline({
+            path: points,
+            strokeColor: "#FCD116",
+            strokeOpacity: 0.75,
+            strokeWeight: 1
+            // ,
+            // geodesic: true
+        });
+
+        line.setMap(map);
+        arcs[akey] = line;
+    }
+    
     this.drawLocation = function(loc) {
 		drawFixedSize(loc);
 	}

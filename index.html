@@ -74,12 +74,10 @@
     var map = new google.maps.Map(document.getElementById("map_canvas"),
         myOptions);
 
-		var
-	    darkMapType = new google.maps.StyledMapType(darkMapStyles, {
+	var darkMapType = new google.maps.StyledMapType(darkMapStyles, {
 	        name: 'Name'
 	    });
-
-		map.mapTypes.set('DefconMap', darkMapType);
+	map.mapTypes.set('DefconMap', darkMapType);
 
 	plotter = new Plotter(map);
   }

@@ -4,15 +4,60 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="style.css" type="text/css">
 <script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=false">
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCUf-MblhWb4oUjoyyRtzYmCcBYpEJhhQc&sensor=false">
 </script>
 <script type="text/javascript">
   var plotter;
 
   function initialize() {
-    var latlng = new google.maps.LatLng(43.012924, 0.0);
+    var center = new google.maps.LatLng(43.012924, 0.0);
+	
+	var darkMapStyles = [
+	  {
+	    featureType: "administrative",
+	    stylers: [
+	      { visibility: "off" }
+	    ]
+	  },{
+	    featureType: "poi",
+	    stylers: [
+	      { visibility: "off" }
+	    ]
+	  },{
+	    featureType: "road",
+	    stylers: [
+	      { visibility: "off" }
+	    ]
+	  },{
+	    featureType: "transit",
+	    stylers: [
+	      { visibility: "off" }
+	    ]
+	  },{
+	    featureType: "landscape",
+	    stylers: [
+	      { visibility: "simplified" },
+	      { hue: "#00b2ff" },
+	      { saturation: 80 },
+	      { lightness: 4 },
+	      { invert_lightness: true }
+	    ]
+	  },{
+	    featureType: "water",
+	    stylers: [
+	      { visibility: "simplified" },
+	      { invert_lightness: true },
+	      { saturation: 59 },
+	      { lightness: -18 },
+	      { hue: "#00c3ff" }
+	    ]
+	  },{
+	  }
+	];
+	
+
     var myOptions = {
-		center: latlng,
+		center: center,
         zoom: 2,
         minZoom: 2,
         mapTypeId: google.maps.MapTypeId.TERRAIN,
@@ -21,10 +66,18 @@
         mapTypeControl: false,
         scaleControl: false,
         streetViewControl: false,
-        overviewMapControl: false
+        overviewMapControl: false,
+		mapTypeId: 'DefconMap'
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"),
         myOptions);
+
+		var
+	    darkMapType = new google.maps.StyledMapType(darkMapStyles, {
+	        name: 'Name'
+	    });
+
+		map.mapTypes.set('DefconMap', darkMapType);
 
 	plotter = new Plotter(map);
   }

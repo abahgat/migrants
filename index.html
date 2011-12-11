@@ -19,7 +19,13 @@
 		center: latlng,
         zoom: 2,
         minZoom: 2,
-        mapTypeId: google.maps.MapTypeId.TERRAIN
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
+		panControl: false,
+        zoomControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        overviewMapControl: false
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"),
         myOptions);

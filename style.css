@@ -9,6 +9,16 @@ body {
 #map_canvas {
     height: 100%
 }
+#controls {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    width: 220px;
+    background-color: white;
+    padding: 5px;
+    box-shadow: 0 0 5px white;
+}
+
 .location-marker {
     /* make it round */
     border-radius: 50%;

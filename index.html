@@ -1,0 +1,87 @@
+<html>
+<body>
+<div id="fb-root"></div>
+<script>
+function fetchFriends() {
+    var ids = [];
+    var nothing = 0;
+    var justloc = 0;
+    var justhome = 0;
+    var both = 0;
+    var different = 0;
+
+    FB.api('/me/friends',
+    function(response) {
+        var friends = response.data;
+        for (var i = 0, l = friends.length; i < l; i++) {
+            var friend = friends[i];
+            ids.push(friend.id);
+            // make on demand call, can be batched
+            FB.api('/' + friend.id,
+            function(response) {
+                var name = response.name;
+                var location = response.location;
+                var hometown = response.hometown;
+                console.log(name + " " + location + " " + hometown);
+                if (location && hometown) {
+                    both++;
+                    if (location.id != hometown.id) {
+                        different++;
+                    }
+                } else if (location) {
+                    justloc++;
+                } else if (hometown) {
+                    justhome++;
+                } else {
+                    nothing++;
+                }
+            })
+        }
+    });
+
+}
+
+window.fbAsyncInit = function() {
+    FB.init({
+        appId: '127670657334000',
+        status: true,
+        // check login status
+        cookie: true,
+        // enable cookies to allow the server to access the session
+        xfbml: true,
+        // parse XFBML
+        channelUrl: 'http://migrants.local/channel.html',
+        // Custom Channel URL
+        oauth: true
+        //enables OAuth 2.0
+    });
+
+    FB.getLoginStatus(function(response) {
+        if (response.authResponse) {
+            // logged in and connected user, someone you know
+            console.log("logged in");
+            fetchFriends();
+        } else {
+            // no user session available, someone you don't know
+            console.log("not logged in");
+        }
+    });
+
+};
+
+ (function() {
+    var e = document.createElement('script');
+    //e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.src = 'http://connect.facebook.net/en_US/all.js';
+
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+} ());
+</script>
+
+<div class="fb-login-button" data-show-faces="true" data-width="200" data-max-rows="2" perms="user_location,friends_location,user_hometown,friends_hometown"></div>
+
+
+
+</body>
+</html>

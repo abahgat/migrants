@@ -17,6 +17,7 @@ body {
     background-color: white;
     padding: 5px;
     box-shadow: 0 0 5px white;
+    display: none;
 }
 
 .location-marker {

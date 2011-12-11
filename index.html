@@ -118,12 +118,16 @@
 				if (response.authResponse) {
 					// logged in and connected user, someone you know
 					console.log("logged in");
+					
+					// TODO this should be called whenever we learn who the current user is
+					document.getElementById('controls').style.display = 'none';
 					var collector = new DataCollector();
 					var data = collector.collect(plotter);
 					
 				} else {
 					// no user session available, someone you dont know
 					console.log("not logged in");
+					document.getElementById('controls').style.display = 'block';
 				}
 			});
 

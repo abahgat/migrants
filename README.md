@@ -1,4 +1,4 @@
-= Migrants =
+# Migrants
 
 Migrants is a small toy project I wrote to display where your Facebook friends are from and where they presently live.
 

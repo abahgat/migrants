@@ -1,6 +1,7 @@
-function CustomMarker(latlng, size, type, map) {
+function CustomMarker(latlng, size, title, type, map) {
     this.latlng_ = latlng;
     this.size_ = size;
+    this.title_ = title;
     this.type_ = type;
     this.setMap(map);
 }
@@ -17,6 +18,7 @@ CustomMarker.prototype.draw = function() {
         div.style.cursor = 'pointer';
         div.style.width = this.size_ + "px";
         div.style.height = this.size_ + "px";
+        div.title = this.title_;
         div.className = "location-marker " + this.type_;
         var panes = this.getPanes();
         panes.overlayImage.appendChild(div);
@@ -61,26 +63,25 @@ function Plotter(map) {
         arcs[akey] = line;
     }
     
-    this.drawLocation = function(loc) {
-		drawFixedSize(loc);
+    this.drawLocation = function(loc, name) {
+		drawFixedSize(loc, name);
 	}
 	
-	function drawFixedSize(loc) {
+	function drawFixedSize(loc, name) {
 	    var position = new google.maps.LatLng(loc.latitude,loc.longitude);
-	    var marker = new CustomMarker(position, 5, 'main', map);
-		    
+	    var marker = new CustomMarker(position, 5, name, 'main', map);
 	}
 	
-	function drawWithSize(loc) {
+	function drawWithSize(loc, name) {
 	    var position = new google.maps.LatLng(loc.latitude,loc.longitude);
 	    var homec = loc.homeCount;
 		var currc = loc.currentCount;
 	    if (homec < currc) {
-		    var marker = new CustomMarker(position, 2*(homec+currc), 'current', map);
-		    var marker = new CustomMarker(position, 2*homec, 'home', map);
+		    var marker = new CustomMarker(position, 2*(homec+currc), name, 'current', map);
+		    var marker = new CustomMarker(position, 2*homec, name, 'home', map);
 		} else {
-		    var marker = new CustomMarker(position, 2*(homec+currc), 'home', map);
-		    var marker = new CustomMarker(position, 2*currc, 'current', map);
+		    var marker = new CustomMarker(position, 2*(homec+currc), name, 'home', map);
+		    var marker = new CustomMarker(position, 2*currc, name, 'current', map);
 		}
 	}
 }

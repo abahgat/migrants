@@ -24,7 +24,7 @@ function DataCollector() {
                         loc.id = response.id;
                         loc.homeCount = homeCounts[response.id];
                         loc.currentCount = currentCounts[response.id];
-                        plotter.drawLocation(loc);
+                        plotter.drawLocation(loc, response.name);
                     }
                 });
             }

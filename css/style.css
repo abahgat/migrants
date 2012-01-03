@@ -6,8 +6,11 @@ body {
     margin: 0px;
     padding: 0px
 }
-#map_canvas {
-    height: 100%
+#map-canvas {
+	z-index: -1;
+	position: fixed;
+	top: 0px;
+	left: 0px;
 }
 #controls {
     position: fixed;
@@ -44,4 +47,27 @@ body {
     background-color: #2eff2e;
     border: 1px #2eff2e solid !important;
     opacity: .65;
+}
+
+/* popover restyling */
+
+.popover .inner {
+  background: #b4b4b4;
+  background: rgba(180, 180, 180, 1);
+  -webkit-box-shadow: 0 3px 7px rgba(180, 180, 180, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(180, 180, 180, 0.3);
+  box-shadow: 0 3px 7px rgba(180, 180, 180, 0.3);
+}
+
+.popover.above .arrow {
+  border-top: 5px solid #b4b4b4;
+}
+.popover.right .arrow {
+  border-right: 5px solid #b4b4b4;
+}
+.popover.below .arrow {
+  border-bottom: 5px solid #b4b4b4;
+}
+.popover.left .arrow {
+  border-left: 5px solid #b4b4b4;
 }

@@ -19,9 +19,13 @@ CustomMarker.prototype.draw = function() {
         div.style.width = this.size_ + "px";
         div.style.height = this.size_ + "px";
         div.title = this.title_;
+		div.onmouseover = function() { 
+			$(div).popover('show');
+		};
         div.className = "location-marker " + this.type_;
         var panes = this.getPanes();
         panes.overlayImage.appendChild(div);
+		$(div).popover({content: 'content', placement: 'above'});
         
     }
     var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);

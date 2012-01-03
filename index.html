@@ -3,8 +3,12 @@
 <head>
 <title>Migrants: where did your friends move to?</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="icon" type="image/png" href="world.png" />
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" />
+<link rel="stylesheet" href="css/style.css" type="text/css"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-twipsy.js"></script>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-popover.js"></script>
 <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCUf-MblhWb4oUjoyyRtzYmCcBYpEJhhQc&sensor=false">
 </script>
@@ -85,6 +89,22 @@
 </script>
 </head>
 <body onload="initialize()">
+
+	<div class="topbar">
+	  <div class="fill">
+		<div class="container">
+		  <a class="brand" href="#">Migrants</a>
+		  <ul class="nav">
+			<li class="active"><a href="/">Home</a></li>
+			<li><a href="http://www.github.com/abahgat/migrants">Source Code</a></li>
+		  </ul>
+		  <form action="" class="pull-right">
+			<button class="btn" type="submit">Sign in</button>
+		  </form>
+		</div>
+	  </div>
+	</div>
+
 	<div id="map_canvas" style="width:100%; height:100%"></div>
 	<div id="fb-root"></div>
 	

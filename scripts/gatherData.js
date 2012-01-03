@@ -114,8 +114,8 @@ function DataCollector() {
                 }
             }
             
-            setTimeout(drawArcs, 10000);
-
+            // setTimeout(drawArcs, 10000);
+			
             // location_ids array may contain dupes
             return {
                 stats: stats,

@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" />
 <link rel="stylesheet" href="css/style.css" type="text/css"/>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-modal.js"></script>
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-twipsy.js"></script>
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-popover.js"></script>
 <script type="text/javascript"
@@ -98,9 +99,9 @@
 			<li class="active"><a href="/">Home</a></li>
 			<li><a href="http://www.github.com/abahgat/migrants">Source Code</a></li>
 		  </ul>
-		  <form action="" class="pull-right">
-			<button class="btn" type="submit">Sign in</button>
-		  </form>
+		  <ul class='nav secondary-nav'>
+			<li class='dropdown open'><a class='uname'>Name</a></li>
+		  </ul>
 		</div>
 	  </div>
 	</div>
@@ -108,17 +109,49 @@
 	<div id="map_canvas" style="width:100%; height:100%"></div>
 	<div id="fb-root"></div>
 	
-	<div id="controls">
-	<!-- this should be drawn in an overlay or something similar -->
-	<div class="fb-login-button" data-show-faces="true" data-width="200"
-		data-max-rows="2"
-		perms="user_location,friends_location,user_hometown,friends_hometown"></div>
-	</div>
+	<div id="modal-login" class="modal hide fade">
+    	<div class="modal-header">
+	      <h3>Who are you?</h3>
+	    </div>
+	    <div class="modal-body">
+	    <p>Login using your Facebook account</p>
+	    </div>
+	    <div class="modal-footer">
+			<div class="pull-right">
+				<div class="fb-login-button" data-show-faces="true" data-width="500"
+						data-max-rows="2"
+						perms="user_location,friends_location,user_hometown,friends_hometown"></div>
+			</div>
+    	</div>
+    </div>
 
 	<script type="text/javascript" src="scripts/plotData.js"></script>
 	<script type="text/javascript" src="scripts/gatherData.js"></script>
 	
 	<script>
+		function initApp() {
+			var collector = new DataCollector();
+			var data = collector.collect(plotter);
+		}
+		
+		function access(response) {
+			if (response.authResponse) {
+				// logged in and connected user, someone you know
+				console.log("logged in");
+				
+				$('#modal-login').modal('hide');
+				
+				initApp();
+				
+			} else {
+				// no user session available, someone you don't know
+				console.log("not logged in");
+				$('#modal-login').modal({ backdrop: 'static', show: true});
+				
+				FB.Event.subscribe('auth.authResponseChange', window.access);
+			}
+		}
+	
 		window.fbAsyncInit = function() {
 			FB.init({
 				appId : '127670657334000',
@@ -130,22 +163,7 @@
 			//enables OAuth 2.0
 			});
 
-			FB.getLoginStatus(function(response) {
-				if (response.authResponse) {
-					// logged in and connected user, someone you know
-					console.log("logged in");
-					
-					// TODO this should be called whenever we learn who the current user is
-					document.getElementById('controls').style.display = 'none';
-					var collector = new DataCollector();
-					var data = collector.collect(plotter);
-					
-				} else {
-					// no user session available, someone you dont know
-					console.log("not logged in");
-					document.getElementById('controls').style.display = 'block';
-				}
-			});
+			FB.getLoginStatus(window.access);
 
 		};
 

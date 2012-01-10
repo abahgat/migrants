@@ -2,7 +2,15 @@ function DataCollector(plotter) {
     this.plotter = plotter;
 
     this.collect = function() {
+        resolveMe();
         return fetchFriends();
+    }
+
+    function resolveMe() {
+        FB.api('/me', function(response) {
+            console.log(JSON.stringify(response));
+            this.plotter.drawMe(response);
+        });
     }
 
     var locations = {}

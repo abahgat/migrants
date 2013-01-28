@@ -78,3 +78,10 @@ body {
   -moz-opacity: 0.8;
   opacity: 0.4;
 }
+
+.upic {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: none;
+}

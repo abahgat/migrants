@@ -1,12 +1,21 @@
-function DataCollector() {
+function DataCollector(plotter) {
+    this.plotter = plotter;
 
-    this.collect = function(plotter) {
-        return fetchFriends(plotter);
+    this.collect = function() {
+        resolveMe();
+        return fetchFriends();
+    }
+
+    function resolveMe() {
+        FB.api('/me', function(response) {
+            console.log(JSON.stringify(response));
+            this.plotter.drawMe(response);
+        });
     }
 
     var locations = {}
 
-    function resolveLocations(locIds, homeCounts, currentCounts, plotter) {
+    function resolveLocations(locIds, homeCounts, currentCounts) {
         // it would be better to batch these calls, if possible
         for (var i = 0, l = locIds.length; i < l; i++) {
             var id = locIds[i];
@@ -24,7 +33,7 @@ function DataCollector() {
                         loc.id = response.id;
                         loc.homeCount = homeCounts[response.id];
                         loc.currentCount = currentCounts[response.id];
-                        plotter.drawLocation(loc, response.name);
+                        this.plotter.drawLocation(loc, response.name);
                     }
                 });
             }
@@ -32,7 +41,7 @@ function DataCollector() {
         return locations;
     }
 
-    function fetchFriends(plotter) {
+    function fetchFriends() {
 
         var stats = {
             none: 0,
@@ -104,13 +113,13 @@ function DataCollector() {
             console.log("hometowns: " + mapSize(hometowns) + " locations: "
             + mapSize(current_locations));
             
-            var location_coordinates = resolveLocations(location_ids, hometowns, current_locations, plotter);
+            var location_coordinates = resolveLocations(location_ids, hometowns, current_locations);
             
             // this should be done while drawing locations
             function drawArcs() {
                 for (var i = 0; i < arcs.length; i++) {
                     console.log(arcs[i][0] + '->' + arcs[i][1]);
-                    plotter.drawArc(locations[arcs[i][0]], locations[arcs[i][1]]);
+                    this.plotter.drawArc(locations[arcs[i][0]], locations[arcs[i][1]]);
                 }
             }
             

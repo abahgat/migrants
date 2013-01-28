@@ -88,4 +88,11 @@ function Plotter(map) {
 		    var marker = new CustomMarker(position, 2*currc, name, 'current', map);
 		}
 	}
+
+    this.drawMe = function(user) {
+        $('.upic').attr('src', 'http://graph.facebook.com/' + user.id + '/picture?type=square');
+        $('.uname').attr('href', user.link);
+        $('.uname').append(user.name);
+        $('.upic').show();
+    }
 }

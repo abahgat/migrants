@@ -21,53 +21,47 @@
 	
 	var darkMapStyles = [
 	  {
-	    featureType: "administrative",
-	    stylers: [
-	      { visibility: "off" }
+	    "featureType": "water",
+	    "stylers": [
+	      { "visibility": "simplified" },
+	      { "lightness": -39 },
+	      { "color": "#203e78" }
 	    ]
 	  },{
-	    featureType: "poi",
-	    stylers: [
-	      { visibility: "off" }
+	    "featureType": "road",
+	    "stylers": [
+	      { "visibility": "off" }
 	    ]
 	  },{
-	    featureType: "road",
-	    stylers: [
-	      { visibility: "off" }
+	    "featureType": "landscape",
+	    "stylers": [
+	      { "invert_lightness": true },
+	      { "color": "#101316" },
+	      { "visibility": "on" }
 	    ]
 	  },{
-	    featureType: "transit",
-	    stylers: [
-	      { visibility: "off" }
+	    "featureType": "transit",
+	    "stylers": [
+	      { "visibility": "off" }
 	    ]
 	  },{
-	    featureType: "landscape",
-	    stylers: [
-	      { visibility: "simplified" },
-	      { hue: "#00b2ff" },
-	      { saturation: 80 },
-	      { lightness: 4 },
-	      { invert_lightness: true }
+	    "featureType": "poi",
+	    "stylers": [
+	      { "visibility": "off" }
 	    ]
 	  },{
-	    featureType: "water",
-	    stylers: [
-	      { visibility: "simplified" },
-	      { invert_lightness: true },
-	      { saturation: 59 },
-	      { lightness: -18 },
-	      { hue: "#00c3ff" }
+	    "featureType": "administrative",
+	    "stylers": [
+	      { "visibility": "off" }
 	    ]
-	  },{
 	  }
 	];
-	
 
     var myOptions = {
 		center: center,
         zoom: 2,
         minZoom: 2,
-        mapTypeId: google.maps.MapTypeId.TERRAIN,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
 		panControl: false,
         zoomControl: false,
         mapTypeControl: false,
@@ -100,7 +94,7 @@
 			<li><a href="http://www.github.com/abahgat/migrants">Source Code</a></li>
 		  </ul>
 		  <ul class='nav secondary-nav'>
-			<li class='dropdown open'><a class='uname'>Name</a></li>
+			<li><a class='uname'><img src="" class="upic"/>&nbsp;</a></li>
 		  </ul>
 		</div>
 	  </div>

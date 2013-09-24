@@ -57,7 +57,7 @@ function Plotter(map) {
         var line = new google.maps.Polyline({
             path: points,
             strokeColor: "#FCD116",
-            strokeOpacity: 0.75,
+            strokeOpacity: 0.5,
             strokeWeight: 1
             // ,
             // geodesic: true

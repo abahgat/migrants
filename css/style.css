@@ -1,10 +1,10 @@
 html {
-    height: 100%
+  height: 100%
 }
 body {
-    height: 100%;
-    margin: 0px;
-    padding: 0px
+  height: 100%;
+  margin: 0px;
+  padding: 0px
 }
 #map-canvas {
 	z-index: -1;
@@ -13,40 +13,40 @@ body {
 	left: 0px;
 }
 #controls {
-    position: fixed;
-    right: 0px;
-    top: 0px;
-    width: 220px;
-    background-color: white;
-    padding: 5px;
-    box-shadow: 0 0 5px white;
-    display: none;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 220px;
+  background-color: white;
+  padding: 5px;
+  box-shadow: 0 0 5px white;
+  display: none;
 }
 
 .location-marker {
-    /* make it round */
-    border-radius: 50%;
-    border: 1px #fff solid !important;
-    box-shadow: 0 0 5px #fff;
-    background-color: #fff
+  /* make it round */
+  border-radius: 50%;
+  border: 1px #fff solid !important;
+  box-shadow: 0 0 5px #fff;
+  background-color: #fff
 }
 .location-marker.home {
-    border: 1px #fb7a22 solid !important;
-    box-shadow: 0 0 5px #fb7a22;
-    background-color: #fb7a22;
-    opacity: .5;
+  border: 1px #fb7a22 solid !important;
+  box-shadow: 0 0 5px #fb7a22;
+  background-color: #fb7a22;
+  opacity: .5;
 }
 .location-marker.current {
-    box-shadow: 0 0 5px #2eff2e;
-    background-color: #2eff2e;
-    border: 1px #2eff2e solid !important;
-    opacity: .5;
+  box-shadow: 0 0 5px #2eff2e;
+  background-color: #2eff2e;
+  border: 1px #2eff2e solid !important;
+  opacity: .5;
 }
 .location-marker.main {
-    box-shadow: 0 0 5px #2eff2e;
-    background-color: #2eff2e;
-    border: 1px #2eff2e solid !important;
-    opacity: .65;
+  box-shadow: 0 0 5px #2eff2e;
+  background-color: #2eff2e;
+  border: 1px #2eff2e solid !important;
+  opacity: .65;
 }
 
 /* popover restyling */

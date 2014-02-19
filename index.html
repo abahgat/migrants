@@ -4,12 +4,17 @@
 <title>Migrants: where did your friends move to?</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <link rel="icon" type="image/png" href="world.png" />
-<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/style.css" type="text/css"/>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-modal.js"></script>
-<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-twipsy.js"></script>
-<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-popover.js"></script>
 <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCUf-MblhWb4oUjoyyRtzYmCcBYpEJhhQc&sensor=false">
 </script>
@@ -85,20 +90,24 @@
 </head>
 <body onload="initialize()">
 
-	<div class="topbar">
-	  <div class="fill">
-		<div class="container">
-		  <a class="brand" href="#">Migrants</a>
-		  <ul class="nav">
-			<li class="active"><a href="/">Home</a></li>
-			<li><a href="http://www.github.com/abahgat/migrants">Source Code</a></li>
-		  </ul>
-		  <ul class='nav secondary-nav'>
-			<li><a class='uname'><img src="" class="upic"/>&nbsp;</a></li>
-		  </ul>
-		</div>
-	  </div>
-	</div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Migrants</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="http://www.github.com/abahgat/migrants">Source Code</a></li>
+        </ul>
+        <div class="navbar-right">
+	      	<ul class="nav navbar-nav">
+						<li><a class="uname"><img src="" class="upic"/>&nbsp;</a></li>
+				  </ul>
+	      </div>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
 
 	<div id="map_canvas" style="width:100%; height:100%"></div>
 	<div id="fb-root"></div>
@@ -119,8 +128,8 @@
     	</div>
     </div>
 
-	<script type="text/javascript" src="scripts/plotData.js"></script>
-	<script type="text/javascript" src="scripts/gatherData.js"></script>
+	<script type="text/javascript" src="scripts/plot.js"></script>
+	<script type="text/javascript" src="scripts/collect.js"></script>
 	
 	<script>
 		function initApp() {

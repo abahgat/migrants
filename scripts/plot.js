@@ -19,13 +19,13 @@ CustomMarker.prototype.draw = function() {
         div.style.width = this.size_ + "px";
         div.style.height = this.size_ + "px";
         div.title = this.title_;
-		div.onmouseover = function() { 
-			$(div).popover('show');
-		};
+		// div.onmouseover = function() { 
+		// 	$(div).popover('show');
+		// };
         div.className = "location-marker " + this.type_;
         var panes = this.getPanes();
         panes.overlayImage.appendChild(div);
-		$(div).popover({content: 'content', placement: 'above'});
+		// $(div).popover({content: 'content', placement: 'above'});
         
     }
     var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
@@ -57,7 +57,7 @@ function Plotter(map) {
         var line = new google.maps.Polyline({
             path: points,
             strokeColor: "#FCD116",
-            strokeOpacity: 0.75,
+            strokeOpacity: 0.5,
             strokeWeight: 1
             // ,
             // geodesic: true

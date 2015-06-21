@@ -109,8 +109,8 @@ function DataCollector(plotter) {
 
       stats.log();
 
-      console.log("hometowns: " + mapSize(hometowns) + " locations: "
-      + mapSize(current_locations));
+      console.log("hometowns: " + mapSize(hometowns) + " locations: " +
+          mapSize(current_locations));
 
       var location_coordinates = resolveLocations(location_ids, hometowns, current_locations);
 
@@ -133,7 +133,6 @@ function DataCollector(plotter) {
       }
 
     });
-
   }
 
   /* util functions */
@@ -146,11 +145,6 @@ function DataCollector(plotter) {
   }
 
   function mapSize(map) {
-    var size = 0;
-    for (key in map) {
-      if (map.hasOwnProperty(key))
-      ++size;
-    }
-    return size;
+    return Object.keys(map).length;
   }
 }
